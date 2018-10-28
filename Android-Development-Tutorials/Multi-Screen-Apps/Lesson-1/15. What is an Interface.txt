@@ -1,0 +1,37 @@
+### 15. What is an **Interface**?
+
+When we look at the `OnClickListener` again, we see that Android is very specific about the details around how to listen for an input event. 
+The method `onClick` **cannot** be named anything else, can have no return value, and can only have one input - the view that is being clicked on.
+```java
+onClick(View v)
+```
+
+This usage of the `OnClickListener` can be thought of as a contract that you as a developer **need** to follow to allow you to be notified of the click events.
+In more formal Java terms, this is the definition of an **interface**.
+
+Concrete classes contain state. They also have full implementation. This means that each method contains instructions within them.
+If you come across a concrete class, you can use them right away. 
+Let's look at the TextView class as an example.
+
+
+
+Note how each method like setText and setTextColor contain something in their body.
+
+
+Interfaces have no state. However they do have method signatures. A method signature signifies the return value, method name, and input parameters.
+There are no curly braces. When there are none, that is what makes it an **abstract method**.
+The abstract method is intentionally left blank so that a developer who wants to use the interface can provide their own specific instructions to the abstract method.
+For the `OnClickListener`, abstract methods work like a fill-in-the-blank for what you want to happen when the View gets clicked on.
+There can be *multiple abstract methods in an interface*, but the `OnClickListener` interface only has one abstract method, `onClick`.
+
+
+
+There are also **abstract classes**. These are partially implemented classes, they contain state, and have some fully implemented methods while other methods are left abstract for someone else to define the behaviour.
+
+With an abstract class, you need to provide subclasses, and then provide your own code for the abstract methods. 
+For example in the abstract class `ViewGroup`, we want to standardize some behaviour about ViewGroups being a container of multiple child Views. 
+However, the details of how to lay out the views on the screen is left undefined for the subclass to determine. In this case, `LinearLayout` and `RelativeLayout` are subclasses of the ViewGroup class.
+They each define their own rules for how Views should be laid out on the screen.  
+
+
+
