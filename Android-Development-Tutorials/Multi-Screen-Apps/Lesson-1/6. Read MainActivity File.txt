@@ -1,0 +1,68 @@
+##### October 5, 2018
+
+### 6. Read MainActivity.java file
+
+```java
+package com.example.android.miwok; //what follows the package keyword is the package name
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Set the content of the activity to use the activity_main.xml layout file
+        setContentView(R.layout.activity_main);
+    }
+}
+```
+
+```java
+package com.example.android.miwok;
+```
+The `package` name *uniquely identifies our app* on an Android device
+All the code for our app will be grouped together under this `package` name
+
+```java
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+```
+`import` statements import Java classes that we didn't write but we can still use in our code
+These files belong to other packages of code in the Android framework which was written by the Android team
+In the code above, we are importing the `AppCompatActivity` class from the package called `android.support.v7.app`
+
+```java
+public class MainActivity extends AppCompatActivity {
+```
+
+This is a class declaration. It declares that this file contains the definition of the class called `MainActivity`.
+It extends from a superclass called `AppCompatActivity` which means it inherits all the behaviours that `AppCompatActivity` has.
+`MainActivity` inherits showing the window in the device and showing the app bar.
+We only modify this class declaration if we want to change the name of the class or change where we're inheriting from.
+
+```java
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+```
+
+This is a **method Override**. We're overriding the `onCreate` method *that was originally defined in the* `AppCompatActivity` *class*.
+This `onCreate` method is called by Android when it first creates an instance of `MainActivity`, so when you open the app on your device.
+In this section of code, we're providing our own steps for what to do when the app is created.
+
+```java
+        // Set the content of the activity to use the activity_main.xml layout file
+        setContentView(R.layout.activity_main);
+    }
+}
+```
+Inside the `onCreate` method, we have a line that creates the `setContentView` method and passes in the `activity_main` layout as an input argument.
+We're telling Android to put the UI defined in the `activity_main` XML file into the `MainActivity` screen
+
+
+
+
+

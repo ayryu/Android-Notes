@@ -1,0 +1,31 @@
+##### October 7, 2018
+
+### 9. Use an Intent to open another `Activity`
+
+These are the steps on how to open a new `Activity` when a category in the `MainActivity` is clicked on:
+1. We need to know when a user clicks on a certain category.
+2. We need to send an `Intent` to open an `Activity` within our app.
+
+We're going to make each of the categories buttons.
+
+In the `activity_main` XML file, we're going to be adding the `onClick` attribute to each of the TextViews.
+For example:
+```xml
+<TextView
+android:onClick="openNumbersList"/>
+```
+
+The above code tells Android to open the method openNumbersList when the TextView gets clicked.
+Now, we are going to create the openNumbersList method.
+Check out the documentation for the [android:onClick attribute] (https://developer.android.com/reference/android/view/View#attr_android:onClick) to learn how to define the openNumbersList method.
+This [Vogella article] (https://developer.android.com/reference/android/view/View#attr_android:onClick) provides a fuller description of intents.
+
+To start an activity, use the method `startActivity(intent)`. This method is defined on the `Context` object which `Activity` extends.
+```java
+//Start the activity connect to the specified class
+
+Intent i = new Intent(this, ActivityTwo.class);
+startActivity(i);
+```
+
+Activities which are started by other Android activities are called **sub-activities**.

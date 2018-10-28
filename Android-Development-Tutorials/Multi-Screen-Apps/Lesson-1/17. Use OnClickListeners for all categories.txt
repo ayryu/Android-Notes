@@ -1,0 +1,24 @@
+### 17. Use OnClickListeners for all categories
+
+Instead of creating a class for each category that gains OnClickListener functionality, you can write code just in `MainActivity.java` in 2 steps:
+
+1. Store the output of the findViewByID method into a TextView variable.
+```java
+//Finds the View that shows each of the categories
+        TextView colours = (TextView)findViewById(R.id.colours);
+```
+
+2. Invoke the setOnClickListener method on each of the variables, where you can write any specialty behaviour that you desire.
+```java
+ //Sets a clickListener on each View
+        colours.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent coloursIntent = new Intent(MainActivity.this, ColoursActivity.class);
+                startActivity(coloursIntent);
+            }
+        });
+```
+
+The `setOnClickListener` method requires an OnClickListener object as an argument.
+Instead of creating a whole new class just to instantiate an OnClickListener object, you can create a new one in the parameters of the setOnClickListener method.

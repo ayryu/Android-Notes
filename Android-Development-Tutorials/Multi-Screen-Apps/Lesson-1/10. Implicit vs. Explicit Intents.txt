@@ -1,0 +1,59 @@
+##### October 7, 2018
+
+### 10. Implicit vs. Explicit Intents
+
+Implicit intents are used if you don't know and/or don't care which app or app component will handle the intent.
+For example, in a social media app, you can send an intent to allow a user to take a photo. It doesn't matter 
+which camera app receives the intent, it's enough that the app has the capability of taking a photo.
+
+What's inside an implicit intent?
+- An action to perform
+-Data URI (Uniform Resource Identifier - a string that refers to a resource)
+-We can also add:
+  -Categories
+  -Components
+  -Extras (extra information)
+
+Example code from Just Java app:
+```java
+//Creating a text message with a string
+Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
+sendIntent.setData(Uri.parse("mailto:"));
+sendIntent.putExtra(Intent.EXTRA.SUBJECT, "Just Java order for " + name);
+sendIntent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+
+//Verify that the intent will resolve properly
+if (sendIntent.resolveActivity(getPackageManager()) !=null) {
+    startActivity(sendIntent);
+}
+```
+
+Explicit intents are used if you know exactly which app component or activity should handle the intent. 
+You almost never want to use an explicit intent to open a third party app because we don't know if that app is on the device.
+In the case of the Miwok app, we want to send an explicit intent to the NumbersActivity on our app to open that screen.
+
+What's inside an explicit intent?
+-Context
+-Component (usually a `Class`/`Activity to which we want to navigate)
+-Sometimes we can add:
+  -Data URI so that Component can receive certain information
+
+Example code:
+```java
+//Executed in an Activity, so 'this' is the Context
+Intent intent = new Intent(this, NumbersActivity.class);
+startActivity(intent);
+```
+
+Similarities:
+1. We create object instances of the `Intent` class, and then we pass that intent as an argument in the startActivity method.
+2. Both intents are capable of handling intent extras. It just so happens in this example that only the implicit intent has extras.
+Differences:
+1. The constructors take different inputs.
+  -Implicit intents take action strings such as ACTION_VIEW or ACTION_SEND to announce what generic action the app needs.
+  -Explicit intents can directly name the class component they need to open. 
+
+2. Implicit intents use an if block around the resolveActivity method, which catches cases where there aren't any apps in the device to handle the intent request.
+
+By specifying an intent filter in the AndroidManifest file, apps anounce which intents they can receive and handle.
+

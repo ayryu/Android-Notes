@@ -1,0 +1,64 @@
+### 16. How to Create an Event Listener
+
+We need to set up Event Listeners for the input events we want to handle for our app.
+More specifically, for each listener we will need to follow 3 steps:
+
+1. Define the event listener (and the custom behaviour for when the event happens)
+2. Create a new object instance of the event listener (by calling the constructor)
+3. Attach the listener to the view you want to listen for events on.
+
+We'll focus on the specifics of each of the steps that were listed above.
+
+1. **Define the event listener (and the custom behaviour for when the event happens) in `NumbersClickListener.java`:**
+
+```java
+public class NumbersClickListener implements OnClickListener {
+    @Override
+    public void onClick(View view) { Toast.makeText(view.getContext(),
+                "Open the list of numbers", Toast.LENGTH_SHORT).show();}
+}
+```
+
+First we need to define an event listener class that **implements** the interface. 
+Using the keyword `implements` means that the `NumbersClickListener` class will support the specified interface, and provide code for all of it's abstract methods.
+
+By implementing the `OnClickListener` interface, for every piece in the Android code that expects an `OnClickListener` object type, we can use the `NumbersClickListener`.
+
+`@Override` means that we are overriding the blank method in the interface and providing our own implementation. 
+Our implementation of the `onClick` method is that we want a `Toast` message to pop up that says, open the list of numbers.
+
+2. **Create a new object instance of the event listener (by calling the constructor) in ** `MainActivity.java`:
+
+```java
+NumbersClickListener clickListener = new NumbersClickListener();
+```
+This new instance is stored in the variable `clickListener`, which is of type `NumbersClickListener`.
+
+3. *Attach the listener to the view you want to listen to in* `MainActivity.java`:
+```java
+buttonView.setOnClickListener(clickListener);
+```
+Once we have an object instance of `NumbersClickListener`, we need to attach it to the View in which we want to listen for clicks. 
+Assuming we have the view stored as a variable called `buttonView`, we just need to call the `setOnClickListener` method on buttonView and pass in the clickListener variable as an argument.
+`setOnClickListener` only takes in one argument (an `OnClickListener`) as per the Android documentation. 
+Since the `NumbersClickListener` implements this interface, *it is also considered an * `OnClickListener` *data type*, and we can pass that in as an input to the method.
+
+
+We've created a `NumbersClickListener` class, and defined it in it's own Java file. 
+We specify the package name in the code so that our code is bundled under this unique package name. 
+
+The import statements are there because we are using classes that we haven't created. 
+
+In the class declaration, it shows that `NumbersClickListener` implements View.OnClickListener. This is being very explicit in referring to the OnClickListener that is part of the View.java file in this package.
+We use the . operator to access Java class members.
+
+The `onClick` method contains the instructions that if the Numbers category is clicked on, we choose to display a `Toast` message that says open the list of numbers. 
+
+
+Going over to the `MainActivity`, at the end of the `onCreate` method, we need to create a new clickListener object. 
+
+Once we do so, we're going to attach the `clickListener` to the `NumbersCategory` View.
+
+
+Since we've created this way of button functionality, we have to delete the `android:onClick` attribute in `activity_main`, and the `openNumbersList` method in `MainActivity`.
+ 

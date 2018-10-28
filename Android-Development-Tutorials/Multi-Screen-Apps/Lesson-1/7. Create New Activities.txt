@@ -1,0 +1,12 @@
+##### October 5, 2018
+
+### 7. Create New Activities
+
+For the Miwok app, instead of sending intents and launching into other apps on the Android device.
+Instead, we're sending intents to open other activities that are created within the Miwok App.
+
+We'll be working with 5 activities. The `MainActivity`, as well as one `Activity` for each category of words.
+ There will be buttons on `MainActivity` that correspond to each of the word categories
+ When we click on a category in `MainActivity`, we'll send an `Intent` to open a new `Activity`.
+Each `Activity` will contain a **list**.
+
